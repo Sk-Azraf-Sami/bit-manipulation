@@ -82,3 +82,153 @@ The `~` and `!` operators are both used in bitwise operations, but they serve di
    - It's used for boolean negation, such as in conditional statements and logical expressions.
 
 In summary, `~` is a bitwise operator used for inverting individual bits in a binary representation, while `!` is a logical operator used for boolean negation in conditional logic. They have different purposes and applications.
+
+## Some Puzzle on Bit Manipulation
+**Problem-1**
+
+bitAnd - x&y using only ~ and |
+ *   Example: bitAnd(6, 5) = 4
+ *   Legal ops: ~ |
+ *   Max ops: 8
+ *   Rating: 1
+```C
+int bitAnd(int x, int y)
+{
+
+    int temp = ~(~x | ~y);
+    return temp;
+}
+```
+**Problem-2**
+
+bitOr - x|y using only ~ and &
+ *   Example: bitOr(6, 5) = 7
+ *   Legal ops: ~ &
+ *   Max ops: 8
+ *   Rating: 1
+```C
+int bitOr(int x, int y)
+{
+    int temp = ~(~x & ~y);
+    return 2;
+
+}
+```
+**Problem-3**
+
+isZero - returns 1 if x == 0, and 0 otherwise
+ *   Examples: isZero(5) = 0, isZero(0) = 1
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 2
+ *   Rating: 1
+```C
+int isZero(int x)
+{
+    return !x;
+}
+```
+**Problem-4**
+
+minusOne - return a value of -1
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 2
+ *   Rating: 1
+```C
+int minusOne(void)
+{
+    return ~(1 << 31);
+}
+```
+**Problem-5**
+
+TMax - return maximum two's complement integer
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 4
+ *   Rating: 1
+```C
+int tmax(void)
+{
+    // Shift 1 to the left by 31 bits to set the sign bit to 0
+    // All other bits will be set to 1
+    return (1 << 31) ^ ~(1 << 31);
+}
+```
+**Problem-6**
+
+bitXor - x^y using only ~ and &
+ *   Example: bitXor(4, 5) = 1
+ *   Legal ops: ~ &
+ *   Max ops: 14
+ *   Rating: 2
+```C
+
+```
+**Problem-7**
+
+getByte - Extract byte n from word x
+ *   Bytes numbered from 0 (LSB) to 3 (MSB)
+ *   Examples: getByte(0x12345678,1) = 0x56
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 6
+ *   Rating: 2
+```C
+int getByte(int x, int n)
+{
+    // Shift x right by 8 * n bits to get the desired byte in the least significant position
+    int shifted = x >> (n << 3);
+
+    // Mask the result to keep only the least significant byte
+    int result = shifted & 0xFF;
+
+    return result;
+}
+```
+**Problem-8**
+
+isEqual - return 1 if x == y, and 0 otherwise
+ *   Examples: isEqual(5,5) = 1, isEqual(4,5) = 0
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 5
+ *   Rating: 2
+```C
+int isEqual(int x, int y)
+{
+    // XOR x and y, if they are equal, the result will be 0
+    int result = !(x ^ y);
+
+    return result;
+}
+```
+**Problem-9**
+
+negate - return -x
+ *   Example: negate(1) = -1.
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 5
+ *   Rating: 2
+```C
+int negate(int x)
+{
+    // Negate x by taking its two's complement
+    return (~x) + 1;
+}
+```
+**Problem-10**
+
+isPositive - return 1 if x > 0, return 0 otherwise
+ *   Example: isPositive(-1) = 0.
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 8
+ *   Rating: 3
+
+```C
+int isPositive(int x)
+{
+    // Shift x 31 bits to the right to extract its sign bit
+    int sign = (x >> 31) & 1;
+
+    // If x is greater than 0, sign will be 0, and we negate it to get 1
+    // If x is less than or equal to 0, sign will be 1, and we negate it to get 0
+    return !sign;
+}
+```
