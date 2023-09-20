@@ -161,7 +161,14 @@ bitXor - x^y using only ~ and &
  *   Max ops: 14
  *   Rating: 2
 ```C
-
+int bitXor(int x, int y) {
+    int not_x = ~x;
+    int not_y = ~y;
+    int and_x_y = x & y;
+    int and_not_x_not_y = not_x & not_y;
+    int result = ~(and_x_y & and_not_x_not_y);
+    return result;
+}
 ```
 **Problem-7**
 
