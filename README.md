@@ -83,7 +83,7 @@ The `~` and `!` operators are both used in bitwise operations, but they serve di
 
 In summary, `~` is a bitwise operator used for inverting individual bits in a binary representation, while `!` is a logical operator used for boolean negation in conditional logic. They have different purposes and applications.
 
-## Some Puzzle on Bit Manipulation
+## Some Puzzles on Bit Manipulation
 **Problem-1**
 
 bitAnd - x&y using only ~ and |
